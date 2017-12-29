@@ -16,7 +16,8 @@
   "license": "MIT",
   "dependencies": {
     "purescript-eff": "3.x",
-    "purescript-generics-rep": "^5.4.0"
+    "purescript-generics-rep": "^5.4.0",
+    "purescript-argonaut-codecs": "^3.2.0"
   },
   "devDependencies": {
     "purescript-console": "3.x",

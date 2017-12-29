@@ -5,10 +5,12 @@ module Data.UUID
   , parseUUID
   ) where
 
-import Prelude (class Ord, class Eq, class Show, compare, (==), ($), pure, (<<<), (>>=))
+import Prelude (class Ord, class Eq, class Show, compare, (==), ($), pure, (<<<), (>>=), map)
 import Control.Monad.Eff (Eff, kind Effect)
 import Data.Maybe (Maybe(Nothing, Just))
 import Data.Generic.Rep (class Generic)
+import Data.Argonaut.Encode.Class (class EncodeJson, encodeJson)
+import Data.Argonaut.Decode.Class (class DecodeJson, decodeJson)
 
 newtype UUID = UUID String
 
@@ -39,3 +41,8 @@ instance ordUUID :: Ord UUID where
   compare (UUID uA) (UUID uB) = compare uA uB
 
 derive instance genericUUID :: Generic UUID _
+instance encodeJsonUUID :: EncodeJson UUID where
+  encodeJson (UUID s) = encodeJson s
+
+instance decodeJsonUUID :: DecodeJson UUID where
+  decodeJson = map UUID <<< decodeJson
