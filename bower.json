@@ -15,7 +15,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "purescript-eff": "3.x"
+    "purescript-eff": "3.x",
+    "purescript-generics-rep": "^5.4.0"
   },
   "devDependencies": {
     "purescript-console": "3.x",
