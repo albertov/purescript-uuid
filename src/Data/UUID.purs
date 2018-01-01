@@ -9,8 +9,7 @@ import Prelude (class Ord, class Eq, class Show, compare, (==), ($), pure, (<<<)
 import Control.Monad.Eff (Eff, kind Effect)
 import Data.Maybe (Maybe(Nothing, Just))
 import Data.Generic.Rep (class Generic)
-import Data.Argonaut.Encode.Class (class EncodeJson, encodeJson)
-import Data.Argonaut.Decode.Class (class DecodeJson, decodeJson)
+import Data.Foreign.Class (class Decode, class Encode, decode, encode)
 
 newtype UUID = UUID String
 
@@ -41,8 +40,8 @@ instance ordUUID :: Ord UUID where
   compare (UUID uA) (UUID uB) = compare uA uB
 
 derive instance genericUUID :: Generic UUID _
-instance encodeJsonUUID :: EncodeJson UUID where
-  encodeJson (UUID s) = encodeJson s
+instance encodeUUID :: Encode UUID where
+  encode (UUID s) = encode s
 
-instance decodeJsonUUID :: DecodeJson UUID where
-  decodeJson = map UUID <<< decodeJson
+instance decodeUUID :: Decode UUID where
+  decode = map UUID <<< decode
